@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Word Counter BD</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <div>
+      <h1 data-i18n="appTitle">Word Counter BD</h1>
+      <p class="subtitle" data-i18n="appSubtitle">Count words, characters and reading time &mdash; in English and Bangla.</p>
+    </div>
+    <button id="langBtn" class="btn btn-ghost" type="button">&#2476;&#2494;&#2434;&#2482;&#2494;</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <div id="toast" class="toast" role="status" style="display:none"></div>
+
+  <section class="card">
+    <label class="field-label" for="textInput" data-i18n="textLabel">Your text</label>
+    <textarea id="textInput" rows="10" data-i18n-ph="textPlaceholder" placeholder="Type or paste your text here..."></textarea>
+    <p class="hint" data-i18n="textHint">Up to 50,000 characters. Everything stays in your browser &mdash; nothing is uploaded.</p>
+    <div class="toolbar">
+      <button id="sampleBtn" class="btn" type="button" data-i18n="sampleBtn">Load sample</button>
+      <button id="clearBtn" class="btn" type="button" data-i18n="clearBtn">Clear</button>
+      <button id="copyBtn" class="btn" type="button" data-i18n="copyBtn">Copy text</button>
+      <button id="copyCountsBtn" class="btn" type="button" data-i18n="copyCountsBtn">Copy counts</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="statsTitle">Counts</h2>
+    <div class="stats-grid">
+      <div class="stat"><span class="stat-value" id="statWords">0</span><span class="stat-label" data-i18n="words">Words</span></div>
+      <div class="stat"><span class="stat-value" id="statChars">0</span><span class="stat-label" data-i18n="chars">Characters</span></div>
+      <div class="stat"><span class="stat-value" id="statCharsNoSpaces">0</span><span class="stat-label" data-i18n="charsNoSpaces">Characters (no spaces)</span></div>
+      <div class="stat"><span class="stat-value" id="statSentences">0</span><span class="stat-label" data-i18n="sentences">Sentences</span></div>
+      <div class="stat"><span class="stat-value" id="statParagraphs">0</span><span class="stat-label" data-i18n="paragraphs">Paragraphs</span></div>
+      <div class="stat"><span class="stat-value" id="statLines">0</span><span class="stat-label" data-i18n="lines">Lines</span></div>
+      <div class="stat"><span class="stat-value" id="statReading">0 sec</span><span class="stat-label" data-i18n="readingTime">Reading time</span></div>
+      <div class="stat"><span class="stat-value" id="statSpeaking">0 sec</span><span class="stat-label" data-i18n="speakingTime">Speaking time</span></div>
+      <div class="stat"><span class="stat-value" id="statAvgWordLen">&mdash;</span><span class="stat-label" data-i18n="avgWordLen">Average word length</span></div>
+      <div class="stat"><span class="stat-value" id="statLongestWord">&mdash;</span><span class="stat-label" data-i18n="longestWord">Longest word</span></div>
+      <div class="stat"><span class="stat-value" id="statAvgSentenceLen">&mdash;</span><span class="stat-label" data-i18n="avgSentenceLen">Average sentence length</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="goalTitle">Word goal</h2>
+    <div class="goal-row">
+      <label class="field-label" for="goalInput" data-i18n="goalLabel">Target words</label>
+      <input id="goalInput" type="text" inputmode="numeric" autocomplete="off" data-i18n-ph="goalPlaceholder" placeholder="e.g. 1500">
+      <button id="goalSetBtn" class="btn btn-primary" type="button" data-i18n="goalSetBtn">Set goal</button>
+      <button id="goalClearBtn" class="btn" type="button" data-i18n="goalClearBtn">Remove goal</button>
+    </div>
+    <p id="goalError" class="error" style="display:none" data-i18n="goalError">Enter a whole number from 1 to 100,000.</p>
+    <p id="goalStatus" class="goal-status" data-i18n="goalNone">No goal set &mdash; handy for assignments with a word limit.</p>
+    <div id="goalProgressWrap" class="progress-wrap" style="display:none">
+      <div class="progress-bar"><div id="goalBar" class="progress-fill" style="width:0%"></div></div>
+      <span id="goalProgressText" class="progress-text">0 / 0</span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2 data-i18n="keywordsTitle">Most used words</h2>
+    <p id="keywordsEmpty" class="empty" data-i18n="keywordsEmpty">Type some text to see the most used words.</p>
+    <table id="keywordsTable" style="display:none">
+      <thead><tr><th data-i18n="kwWord">Word</th><th class="num" data-i18n="kwCount">Count</th></tr></thead>
+      <tbody id="keywordsBody"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    <p data-i18n="footerNote">Words are counted by splitting on spaces, in English and Bangla. Reading time assumes 200 words per minute; speaking time 150. Abbreviations like &ldquo;Mr.&rdquo; count as sentence breaks &mdash; this is a simple counter, not a grammar checker.</p>
+  </footer>
+</main>
+
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/logic.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
