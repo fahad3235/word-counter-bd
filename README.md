@@ -59,7 +59,7 @@ node tests/smoke.mjs 1280     # headless-Chrome smoke at desktop width
 node tests/smoke.mjs 390      # headless-Chrome smoke at mobile width
 ```
 
-Results: 70/70 unit + 57/57 smoke at 1280px + 57/57 at 390px, 0 console/page errors, 0 non-file network requests. See `TEST_RESULTS.md` for the hand-verified cases.
+Results: 70/70 unit + 45/45 smoke at 1280px + 45/45 at 390px, 0 console/page errors, 0 non-file network requests. See `TEST_RESULTS.md` for the hand-verified cases.
 
 ## Deployment
 
